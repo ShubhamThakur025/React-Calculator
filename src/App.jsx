@@ -77,8 +77,16 @@ function reducer(state, { type, payload }) {
           operation: payload.operation,
           prevOperand: state.currentOperand,
           currentOperand: null,
+          overwrite: true
         }
       }
+      const result = evaluate(state);
+      return {
+        currentOperand: result,
+        prevOperand: result,
+        operation: payload.operation,
+        overwrite: true,
+      };
 
     case ACTIONS.CLEAR:
       return {}
